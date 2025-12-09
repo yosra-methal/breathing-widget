@@ -9,19 +9,23 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
             {/* Mode Title - Outside and Above (Consistent with ExerciseView) */}
             <h2
                 className="mode-title-static"
-                style={{ color: currentMode.textColor, marginBottom: '20px' }}
+                style={{
+                    color: currentMode.textColor,
+                    marginBottom: '20px',
+                    marginTop: '20px' // Lower the title slightly
+                }}
             >
                 {currentMode.title}
             </h2>
 
             <div className="circle-container">
-                {/* Static Solid Circle (Smaller) */}
+                {/* Static Solid Circle (Medium Proportion) */}
                 <div
                     className="breathing-circle-solid"
                     style={{
                         background: currentMode.gradient,
-                        width: '160px', // Smaller than 200px/220px
-                        height: '160px',
+                        width: '185px', // Medium size (increased from 160px)
+                        height: '185px',
                         borderRadius: '50%'
                     }}
                 ></div>
