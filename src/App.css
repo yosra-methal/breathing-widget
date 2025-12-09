@@ -9,7 +9,34 @@
     justify-content: center;
     padding: 20px;
     box-sizing: border-box;
+    /* Widget Frame Styles */
+    background: white;
+    /* Since body is white, we might need a border to show the frame or just shadow?
+       User said: "The entire widget should be framed like a card". 
+       So the app-container IS the card?
+       Or we wrap content in a card. app-container is 100vh.
+       If embedded, the iframe is the window.
+       Let's assume app-container is the specific card centered in the iframe.
+    */
+    border-radius: 20px;
+    /* Light shadow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+    /* Ensure it fits in small iframe */
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: auto;
+    /* Center in viewport */
 }
+
+/* Make body transparent or matching? 
+   User asked "background must be PURE WHITE".
+   If we put a shadow, the background BEHIND the card must be visible or differing?
+   Usually Notion embeds have their own background.
+   Let's keep body white, but maybe slightly off-white to see the card? 
+   No, user said "background must be PURE WHITE". 
+   If bg is white and card is white, shadow is visible only at borders.
+*/
 
 /* Layout */
 .selection-view,
@@ -36,13 +63,57 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    /* Transition for color and size */
-    transition: all 1s ease-in-out;
+    /* Remove shadow from circle itself if desired, or keep softness */
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); */
+    transition: transform 1s ease-in-out;
+    /* Only transform scales */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    /* Absolute within circle-container */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
+}
+
+/* Donut Hole */
+.donut-hole {
+    width: 60%;
+    /* Thickness determines this. 60% hole = 20% border thickness? */
+    height: 60%;
+    background: white;
+    /* Matches card bg */
+    border-radius: 50%;
+    /* Ensure hole stays centered */
+}
+
+/* Static Overlay for Text */
+.static-overlay {
+    position: absolute;
+    z-index: 2;
+    /* On top of circle */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    /* Let clicks pass if needed */
+}
+
+.instruction-content {
+    /* Existing Flex styles */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 
 /* Animation States */
@@ -199,19 +270,34 @@
     font-weight: 400;
 }
 
+.footer-controls {
+    display: flex;
+    flex-direction: column;
+    /* Stack vertically as requested */
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
 .toggle-seconds {
     background: transparent;
-    border: 1px solid #ddd;
+    border: none;
+    /* Cleaner look */
+    /* border: 1px solid #ddd; */
     padding: 5px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
     cursor: pointer;
-    color: #666;
+    color: #999;
+    /* Subtle */
     transition: all 0.2s;
+    text-decoration: underline;
+    /* Make it look like a quiet link/toggle */
 }
 
 .toggle-seconds:hover {
-    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+    background: transparent;
 }
 
 .header h2 {

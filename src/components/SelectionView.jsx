@@ -34,32 +34,30 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
                     ))}
                 </div>
 
-                {currentModeId !== 'sleep' && (
-                    <div className="duration-selector-container">
-                        <label className="duration-label">
-                            Duration: <span style={{ fontWeight: 600 }}>{Math.floor(duration / 60)} min</span>
-                        </label>
-                        <div className="slider-wrapper">
-                            <input
-                                type="range"
-                                min="60"
-                                max="600"
-                                step="60"
-                                value={duration}
-                                onChange={(e) => setDuration(Number(e.target.value))}
-                                className="duration-slider"
-                                style={{
-                                    // Dynamic Accent Color
-                                    accentColor: currentMode.textColor ? currentMode.textColor : '#2c3e50'
-                                }}
-                            />
-                            <div className="slider-minmax">
-                                <span>1m</span>
-                                <span>10m</span>
-                            </div>
+                <div className="duration-selector-container">
+                    <label className="duration-label">
+                        Duration: <span style={{ fontWeight: 600 }}>{Math.floor(duration / 60)} min</span>
+                    </label>
+                    <div className="slider-wrapper">
+                        <input
+                            type="range"
+                            min="60"
+                            max="600"
+                            step="60"
+                            value={duration}
+                            onChange={(e) => setDuration(Number(e.target.value))}
+                            className="duration-slider"
+                            style={{
+                                // Dynamic Accent Color
+                                accentColor: currentMode.textColor ? currentMode.textColor : '#2c3e50'
+                            }}
+                        />
+                        <div className="slider-minmax">
+                            <span>1m</span>
+                            <span>10m</span>
                         </div>
                     </div>
-                )}
+                </div>
 
                 {currentModeId === 'sleep' && (
                     <div className="duration-info">

@@ -114,26 +114,49 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
             {/* No Title */}
 
             <div className="circle-container">
+                {/* Animated Ring (Background) */}
                 <div
                     className={`breathing-circle ${phase}`}
                     style={{
+                        // Use border/box-shadow for annular ring or just a div with border
+                        // If we use background gradient, mask it? Or just use a border with scaling.
+                        // User wants "ANNULAR RING (thick border/donut shape)"
+                        // Best way: Donut is a div with border-radius 50%, transparent bg, thick border (or box-shadow).
+                        // BUT User wants Gradient. Border gradients are tricky with radius.
+                        // Easier: Div with Gradient BG, and a smaller White Div inside (Mask).
+                        // OR: Conic gradient border.
+                        // Let's stick to Gradient Background + Masking for reliable "Buttery" look.
                         background: mode.gradient,
                         transitionDuration: `${mode[phase]}s`
                     }}
                 >
-                    <div className="instruction-content">
-                        <span
-                            className="instruction-text"
-                            style={{ color: mode.textColor }}
-                        >
-                            {instructionMap[phase]}
+                    {/* Inner Mask for Donut Effect - SCALES WITH PARENT? 
+                        If Parent scales, Inner Mask scales = Ring thickness changes?
+                        User wants "ONLY THIS RING expands". 
+                        If we scale the ring, the hole scales too, so thickness stays proportional. This is usually desired.
+                        If thickness must be constant, it's harder. Assuming proportional scale is fine for "Donut".
+                        
+                        WAIT: Text must be STATIC.
+                        So Text CANNOT be a child of `breathing-circle` if `breathing-circle` transforms.
+                        Text must be a sibling.
+                    */}
+                    <div className="donut-hole"></div>
+                </div>
+
+                {/* Static Text Overlay (Sibling, absolutley positioned) */}
+                <div className="instruction-content static-overlay">
+                    <span
+                        className="instruction-text"
+                        style={{ color: mode.textColor }}
+                    >
+                        {instructionMap[phase]}
+                    </span>
+                    {showSeconds && (
+                        <span className="seconds-text" style={{ color: mode.textColor }}>
+                            {remainingPhaseTime}
+                            {/* Removed 's' unit */}
                         </span>
-                        {showSeconds && (
-                            <span className="seconds-text" style={{ color: mode.textColor }}>
-                                {remainingPhaseTime}s
-                            </span>
-                        )}
-                    </div>
+                    )}
                 </div>
             </div>
 
