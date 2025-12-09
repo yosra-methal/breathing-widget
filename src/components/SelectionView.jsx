@@ -59,11 +59,7 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
                     </div>
                 </div>
 
-                {currentModeId === 'sleep' && (
-                    <div className="duration-info">
-                        Running for {MODES.sleep.defaultCycles} cycles
-                    </div>
-                )}
+
 
                 <button className="start-button" onClick={onStart}>
                     START

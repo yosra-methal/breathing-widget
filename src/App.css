@@ -18,9 +18,10 @@
        If embedded, the iframe is the window.
        Let's assume app-container is the specific card centered in the iframe.
     */
-    border-radius: 20px;
+    border-radius: 24px;
+    /* Slightly more rounded */
     /* Light shadow */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 
     /* Ensure it fits in small iframe */
     max-width: 90vw;
@@ -59,19 +60,16 @@
     align-items: center;
 }
 
-.breathing-circle {
-    width: 200px;
-    height: 200px;
+/* Outer Circle: Fixed Size */
+.breathing-circle-outer {
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
-    /* Remove shadow from circle itself if desired, or keep softness */
-    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); */
-    transition: transform 1s ease-in-out;
-    /* Only transform scales */
+    /* No scale transition on outer circle */
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    /* Absolute within circle-container */
     top: 0;
     left: 0;
     right: 0;
@@ -80,64 +78,49 @@
     z-index: 1;
 }
 
-/* Donut Hole */
+/* Donut Hole: Animates Size */
 .donut-hole {
-    width: 60%;
-    /* Thickness determines this. 60% hole = 20% border thickness? */
-    height: 60%;
+    width: 215px;
+    /* Starts very thin ring (almost full cover) */
+    height: 215px;
+    /* Or use %? Let's use px for predictable border thickness */
     background: white;
     /* Matches card bg */
     border-radius: 50%;
-    /* Ensure hole stays centered */
+    transition: transform ease-in-out;
+    /* Controlled by JS duration */
+    /* Transform origin center */
 }
 
-/* Static Overlay for Text */
-.static-overlay {
-    position: absolute;
-    z-index: 2;
-    /* On top of circle */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-    /* Let clicks pass if needed */
+/* Animation Logic: Scale the HOLE */
+/* Inhale: Ring THICKENS => Hole SHRINKS (Scale down) */
+.donut-hole.inhale {
+    transform: scale(0.65);
+    /* Hole becomes 65% size => Thick Ring */
 }
 
-.instruction-content {
-    /* Existing Flex styles */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+/* Hold: State maintained */
+.donut-hole.hold {
+    transform: scale(0.65);
+    /* Mantain Thick */
 }
 
-/* Animation States */
-.breathing-circle.inhale {
-    transform: scale(1.3);
+/* Exhale: Ring THINS => Hole EXPANDS (Scale up) */
+.donut-hole.exhale {
+    transform: scale(0.95);
+    /* Hole becomes 95% size => Thin Ring */
 }
 
-.breathing-circle.hold {
-    transform: scale(1.3);
-    /* Keep expanded */
+/* HoldEmpty: State maintained */
+.donut-hole.holdEmpty {
+    transform: scale(0.95);
+    /* Maintain Thin */
 }
 
-.breathing-circle.exhale {
-    transform: scale(1.0);
-}
-
-.breathing-circle.holdEmpty {
-    transform: scale(1.0);
-    /* Keep contracted */
-}
-
-/* Static state for Selection View */
+/* Static Default */
 .breathing-circle.static {
-    transform: scale(1.0);
+    transform: none;
+    /* or scale(1) */
 }
 
 .mode-title-overlay {

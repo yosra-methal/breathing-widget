@@ -114,36 +114,36 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
             {/* No Title */}
 
             <div className="circle-container">
-                {/* Animated Ring (Background) */}
+                {/* 
+                    Outer Circle: Fixed Size, Gradient Background
+                    This DOES NOT ANIMATE its size. It determines the max outer boundary.
+                 */}
                 <div
-                    className={`breathing-circle ${phase}`}
+                    className={`breathing-circle-outer`}
                     style={{
-                        // Use border/box-shadow for annular ring or just a div with border
-                        // If we use background gradient, mask it? Or just use a border with scaling.
-                        // User wants "ANNULAR RING (thick border/donut shape)"
-                        // Best way: Donut is a div with border-radius 50%, transparent bg, thick border (or box-shadow).
-                        // BUT User wants Gradient. Border gradients are tricky with radius.
-                        // Easier: Div with Gradient BG, and a smaller White Div inside (Mask).
-                        // OR: Conic gradient border.
-                        // Let's stick to Gradient Background + Masking for reliable "Buttery" look.
-                        background: mode.gradient,
-                        transitionDuration: `${mode[phase]}s`
+                        background: mode.gradient
                     }}
                 >
-                    {/* Inner Mask for Donut Effect - SCALES WITH PARENT? 
-                        If Parent scales, Inner Mask scales = Ring thickness changes?
-                        User wants "ONLY THIS RING expands". 
-                        If we scale the ring, the hole scales too, so thickness stays proportional. This is usually desired.
-                        If thickness must be constant, it's harder. Assuming proportional scale is fine for "Donut".
+                    {/* 
+                        Inner Mask (Hole): White Background.
+                        Animates SCALE to change thickness of the ring.
+                        Scale 1.0 = Thin ring (or 0 thickness if hole is 100%, but we set base size).
+                        Scale 0.5 = Thick ring.
                         
-                        WAIT: Text must be STATIC.
-                        So Text CANNOT be a child of `breathing-circle` if `breathing-circle` transforms.
-                        Text must be a sibling.
+                        PHASES:
+                        Inhale: Ring Thickens => Hole Shrinks.
+                        Exhale: Ring Thins => Hole Expands.
+                        Hold: Hole stays constant.
                     */}
-                    <div className="donut-hole"></div>
+                    <div
+                        className={`donut-hole ${phase}`}
+                        style={{
+                            transitionDuration: `${mode[phase]}s`
+                        }}
+                    ></div>
                 </div>
 
-                {/* Static Text Overlay (Sibling, absolutley positioned) */}
+                {/* Static Text Overlay */}
                 <div className="instruction-content static-overlay">
                     <span
                         className="instruction-text"
@@ -154,7 +154,6 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
                     {showSeconds && (
                         <span className="seconds-text" style={{ color: mode.textColor }}>
                             {remainingPhaseTime}
-                            {/* Removed 's' unit */}
                         </span>
                     )}
                 </div>
@@ -162,7 +161,7 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
 
             <div className="footer-controls">
                 <button
-                    className="toggle-seconds"
+                    className={`toggle-seconds ${showSeconds ? 'active' : ''}`}
                     onClick={() => setShowSeconds(!showSeconds)}
                 >
                     {showSeconds ? "Hide Seconds" : "Show Seconds"}
