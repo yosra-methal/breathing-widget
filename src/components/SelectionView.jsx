@@ -34,12 +34,28 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
                             key={m.id}
                             onClick={() => setMode(m.id)}
                             className={currentModeId === m.id ? 'active' : ''}
-                            style={{
-                                borderColor: currentModeId === m.id ? 'var(--color-text)' : 'transparent',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px'
-                            }}
+                            style={
+                                currentModeId === m.id
+                                    ? {
+                                        // Active State: Gradient Border
+                                        background: `linear-gradient(white, white) padding-box, ${m.gradient} border-box`,
+                                        border: '2px solid transparent',
+                                        borderRadius: '20px', // Matches CSS
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px',
+                                        color: 'var(--color-text)',
+                                        fontWeight: 600,
+                                        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)'
+                                    }
+                                    : {
+                                        // Inactive State
+                                        borderColor: 'transparent',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px'
+                                    }
+                            }
                         >
                             <span style={{
                                 width: '10px',
