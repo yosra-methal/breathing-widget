@@ -75,8 +75,9 @@
     /* Above the circle */
     font-weight: 500;
     letter-spacing: 0.5px;
-    font-size: 1.2rem;
+    font-size: 2rem;
     color: var(--color-text);
+    /* Fallback */
 }
 
 /* Controls */
@@ -90,8 +91,10 @@
 .mode-selector {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
+    /* Increased gap for better spacing */
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .mode-selector button {
@@ -126,12 +129,53 @@
     letter-spacing: 1px;
 }
 
-.duration-selector select {
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background: white;
-    font-family: var(--font-family);
+/* Slider Styling */
+.duration-selector-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.duration-label {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.duration-slider {
+    width: 100%;
+    cursor: pointer;
+    height: 6px;
+    background: #eee;
+    border-radius: 5px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.duration-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: currentColor;
+    /* Uses accent-color ideally, or set via JS style */
+    cursor: pointer;
+}
+
+.slider-minmax {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #999;
 }
 
 /* Exercise View Specifics */
