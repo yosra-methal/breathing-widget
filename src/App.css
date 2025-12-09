@@ -1,0 +1,178 @@
+/* reuse index.css variables */
+
+.app-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Layout */
+.selection-view,
+.exercise-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Circle */
+.circle-container {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.breathing-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Transition for color and size */
+    transition: all 1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Animation States */
+.breathing-circle.inhale {
+    transform: scale(1.3);
+}
+
+.breathing-circle.hold {
+    transform: scale(1.3);
+    /* Keep expanded */
+}
+
+.breathing-circle.exhale {
+    transform: scale(1.0);
+}
+
+.breathing-circle.holdEmpty {
+    transform: scale(1.0);
+    /* Keep contracted */
+}
+
+/* Static state for Selection View */
+.breathing-circle.static {
+    transform: scale(1.0);
+}
+
+.mode-title-overlay {
+    position: absolute;
+    top: -40px;
+    /* Above the circle */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-size: 1.2rem;
+    color: var(--color-text);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.mode-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.mode-selector button {
+    background: white;
+    border: 1px solid transparent;
+    /* default border */
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    color: var(--color-text);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s;
+}
+
+.mode-selector button.active {
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.start-button,
+.stop-button {
+    margin-top: 10px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    background: #2c3e50;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.duration-selector select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: white;
+    font-family: var(--font-family);
+}
+
+/* Exercise View Specifics */
+.instruction-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.instruction-text {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.seconds-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+}
+
+.toggle-seconds {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.toggle-seconds:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
