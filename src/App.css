@@ -18,7 +18,8 @@
        If embedded, the iframe is the window.
        Let's assume app-container is the specific card centered in the iframe.
     */
-    border-radius: 24px;
+    border-radius: 32px;
+    /* Significantly more rounded */
     /* Slightly more rounded */
     /* Light shadow */
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
@@ -123,15 +124,21 @@
     /* or scale(1) */
 }
 
-.mode-title-overlay {
-    position: absolute;
-    top: -40px;
-    /* Above the circle */
+/* Solid Circle for Selection View */
+.breathing-circle-solid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.mode-title-static {
     font-weight: 500;
     letter-spacing: 0.5px;
     font-size: 2rem;
-    color: var(--color-text);
-    /* Fallback */
+    /* Large size matched */
+    margin: 0;
+    text-align: center;
 }
 
 /* Controls */

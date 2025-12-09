@@ -111,12 +111,14 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
 
     return (
         <div className="exercise-view">
-            {/* No Title */}
+            {/* Mode Title - Outside and Above */}
+            <h2 className="mode-title-static" style={{ color: mode.textColor, marginBottom: '20px' }}>
+                {mode.title}
+            </h2>
 
             <div className="circle-container">
                 {/* 
                     Outer Circle: Fixed Size, Gradient Background
-                    This DOES NOT ANIMATE its size. It determines the max outer boundary.
                  */}
                 <div
                     className={`breathing-circle-outer`}
@@ -124,17 +126,7 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
                         background: mode.gradient
                     }}
                 >
-                    {/* 
-                        Inner Mask (Hole): White Background.
-                        Animates SCALE to change thickness of the ring.
-                        Scale 1.0 = Thin ring (or 0 thickness if hole is 100%, but we set base size).
-                        Scale 0.5 = Thick ring.
-                        
-                        PHASES:
-                        Inhale: Ring Thickens => Hole Shrinks.
-                        Exhale: Ring Thins => Hole Expands.
-                        Hold: Hole stays constant.
-                    */}
+                    {/* Inner Mask (Hole) */}
                     <div
                         className={`donut-hole ${phase}`}
                         style={{
@@ -143,20 +135,8 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
                     ></div>
                 </div>
 
-                {/* Static Text Overlay */}
+                {/* Static Text Overlay - Centered in Circle Container */}
                 <div className="instruction-content static-overlay">
-                    {/* RESTORED MODE TITLE */}
-                    <h2
-                        className="mode-title-overlay"
-                        style={{
-                            color: mode.textColor,
-                            position: 'relative',
-                            top: '-60px' // Adjust position to be above circle inside the container
-                        }}
-                    >
-                        {mode.title}
-                    </h2>
-
                     <span
                         className="instruction-text"
                         style={{ color: mode.textColor, position: 'relative', zIndex: 10 }}

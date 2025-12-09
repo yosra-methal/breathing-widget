@@ -6,21 +6,25 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
 
     return (
         <div className="selection-view">
-            <div className="circle-container">
-                {/* Static Preview of the Annular Ring */}
-                <div
-                    className="breathing-circle-outer"
-                    style={{ background: currentMode.gradient }}
-                >
-                    <div className="donut-hole static"></div>
-                </div>
+            {/* Mode Title - Outside and Above (Consistent with ExerciseView) */}
+            <h2
+                className="mode-title-static"
+                style={{ color: currentMode.textColor, marginBottom: '20px' }}
+            >
+                {currentMode.title}
+            </h2>
 
-                <h2
-                    className="mode-title-overlay"
-                    style={{ color: currentMode.textColor }}
-                >
-                    {currentMode.title}
-                </h2>
+            <div className="circle-container">
+                {/* Static Solid Circle (Smaller) */}
+                <div
+                    className="breathing-circle-solid"
+                    style={{
+                        background: currentMode.gradient,
+                        width: '160px', // Smaller than 200px/220px
+                        height: '160px',
+                        borderRadius: '50%'
+                    }}
+                ></div>
             </div>
 
             <div className="controls">
@@ -30,8 +34,20 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
                             key={m.id}
                             onClick={() => setMode(m.id)}
                             className={currentModeId === m.id ? 'active' : ''}
-                            style={{ borderColor: currentModeId === m.id ? 'var(--color-text)' : 'transparent' }}
+                            style={{
+                                borderColor: currentModeId === m.id ? 'var(--color-text)' : 'transparent',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                            }}
                         >
+                            <span style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                background: m.gradient,
+                                display: 'inline-block'
+                            }}></span>
                             {m.label}
                         </button>
                     ))}
