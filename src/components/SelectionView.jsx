@@ -11,6 +11,8 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
                 className="mode-title-static"
                 style={{
                     color: currentMode.textColor,
+                    marginBottom: '20px',
+                    // margin-top handled by CSS class .mode-title-static (60px)
                 }}
             >
                 {currentMode.title}
