@@ -1,23 +1,43 @@
 import React, { useState, useEffect } from 'react';
 
 function ExerciseView({ mode, duration, cycleLimit, onStop }) {
-    const [phase, setPhase] = useState('inhale'); // inhale, hold, exhale, holdEmpty
+    // Start with 'ready' state to ensure animation triggers from Thin -> Thick
+    const [phase, setPhase] = useState('ready');
     const [elapsedTime, setElapsedTime] = useState(0);
     const [showSeconds, setShowSeconds] = useState(false);
 
     // Derived state for current phase duration
-    const currentPhaseDuration = mode[phase];
+    // If phase is 'ready', use a tiny duration or 0 to switch instantly, 
+    // BUT we want the first inhale to animate, so we need the transition to happen.
+    // 'ready' should look like 'exhale' (thin). 
+    // Then we switch to 'inhale'.
+    const currentPhaseDuration = mode[phase] || 0;
+
+    // Initial Trigger for Animation
+    useEffect(() => {
+        // Immediate switch from 'ready' to 'inhale' on mount
+        // We use a small timeout to allow the browser to paint the 'ready' state first
+        if (phase === 'ready') {
+            requestAnimationFrame(() => {
+                setPhase('inhale');
+            });
+        }
+    }, []); // Run once on mount
 
     // Main Timer & Phase Logic
     useEffect(() => {
+        if (phase === 'ready') return; // Wait for start
+
         let interval = setInterval(() => {
             setElapsedTime(prev => prev + 1);
         }, 1000);
         return () => clearInterval(interval);
-    }, []);
+    }, [phase]);
 
     // Phase Transitions Logic
     useEffect(() => {
+        if (phase === 'ready') return;
+
         let timeoutId;
 
         const runPhase = () => {
@@ -38,6 +58,8 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
 
         return () => clearTimeout(timeoutId);
     }, [phase, mode]); // Re-run when phase changes
+
+    // ... (rest of the file)
 
     // Total Duration Timer Stop Logic
     useEffect(() => {
@@ -112,7 +134,7 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
     return (
         <div className="exercise-view">
             {/* Mode Title - Outside and Above */}
-            <h2 className="mode-title-static" style={{ color: mode.textColor, marginBottom: '20px' }}>
+            <h2 className="mode-title-static" style={{ color: mode.textColor }}>
                 {mode.title}
             </h2>
 

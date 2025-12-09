@@ -118,6 +118,11 @@
     /* Maintain Thin */
 }
 
+/* Ready State (Initial Mount) - Same as Exhale/Thin */
+.donut-hole.ready {
+    transform: scale(0.95);
+}
+
 /* Static Default */
 .breathing-circle.static {
     transform: none;
@@ -133,11 +138,15 @@
 }
 
 .mode-title-static {
-    font-weight: 500;
+    font-weight: 700;
+    /* Bold */
     letter-spacing: 0.5px;
-    font-size: 2rem;
-    /* Large size matched */
+    font-size: 2.5rem;
+    /* Slightly bigger */
     margin: 0;
+    margin-top: 40px;
+    /* Lower vertical position */
+    margin-bottom: 20px;
     text-align: center;
 }
 
