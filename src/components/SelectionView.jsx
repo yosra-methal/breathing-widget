@@ -10,9 +10,7 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
             <h2
                 className="mode-title-static"
                 style={{
-                    color: currentMode.textColor,
-                    marginBottom: '20px',
-                    // margin-top handled by CSS class .mode-title-static (60px)
+                    color: currentMode.textColor
                 }}
             >
                 {currentMode.title}
