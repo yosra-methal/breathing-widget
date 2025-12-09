@@ -145,14 +145,26 @@ function ExerciseView({ mode, duration, cycleLimit, onStop }) {
 
                 {/* Static Text Overlay */}
                 <div className="instruction-content static-overlay">
+                    {/* RESTORED MODE TITLE */}
+                    <h2
+                        className="mode-title-overlay"
+                        style={{
+                            color: mode.textColor,
+                            position: 'relative',
+                            top: '-60px' // Adjust position to be above circle inside the container
+                        }}
+                    >
+                        {mode.title}
+                    </h2>
+
                     <span
                         className="instruction-text"
-                        style={{ color: mode.textColor }}
+                        style={{ color: mode.textColor, position: 'relative', zIndex: 10 }}
                     >
                         {instructionMap[phase]}
                     </span>
                     {showSeconds && (
-                        <span className="seconds-text" style={{ color: mode.textColor }}>
+                        <span className="seconds-text" style={{ color: mode.textColor, position: 'relative', zIndex: 10 }}>
                             {remainingPhaseTime}
                         </span>
                     )}

@@ -7,11 +7,14 @@ function SelectionView({ currentModeId, setMode, duration, setDuration, onStart 
     return (
         <div className="selection-view">
             <div className="circle-container">
-                {/* Placeholder for Static Gradient Circle */}
+                {/* Static Preview of the Annular Ring */}
                 <div
-                    className="breathing-circle static"
+                    className="breathing-circle-outer"
                     style={{ background: currentMode.gradient }}
-                ></div>
+                >
+                    <div className="donut-hole static"></div>
+                </div>
+
                 <h2
                     className="mode-title-overlay"
                     style={{ color: currentMode.textColor }}
