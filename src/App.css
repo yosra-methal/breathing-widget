@@ -159,11 +159,9 @@
 }
 
 .mode-selector {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 columns fixed */
-    gap: 12px;
-    /* Clean spacing */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
@@ -171,13 +169,11 @@
 }
 
 .mode-selector button {
-    width: 100%;
     box-sizing: border-box;
-    /* Safari safety */
+    /* Critical Safari Fix */
     background: white;
     border: 1px solid transparent;
     padding: 10px 15px;
-    /* Standard padding */
     border-radius: 20px;
     cursor: pointer;
     font-family: var(--font-family);
@@ -185,6 +181,8 @@
     color: var(--color-text);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
     transition: all 0.2s;
+    /* Ensure buttons don't shrink too much */
+    flex: 0 1 auto;
 }
 
 .mode-selector button.active {
