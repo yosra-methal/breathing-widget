@@ -159,159 +159,164 @@
 }
 
 .mode-selector {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    /* Increased gap for better spacing */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns fixed */
+    gap: 12px;
+    /* Clean spacing */
     justify-content: center;
     align-items: center;
-    /* Ensure vertical alignment */
     margin-bottom: 20px;
     width: 100%;
-    /* Ensure full width utilisation */
 }
 
 .mode-selector button {
-    box-sizing: border-box;
-    /* Safari safety */
-    background: white;
-    border: 1px solid transparent;
-    /* default border */
-    padding: 10px 15px;
-    /* Revert to standard padding */
-    /* Increased bottom padding to lift Start button */
-    border-radius: 20px;
-    cursor: pointer;
-    font-family: var(--font-family);
-    font-size: 0.9rem;
-    color: var(--color-text);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-    transition: all 0.2s;
-}
-
-.mode-selector button.active {
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.start-button,
-.stop-button {
-    margin-top: 10px;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 25px;
-    background: #2c3e50;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    /* Extra safety formatting */
-}
-
-/* Slider Styling */
-.duration-selector-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     width: 100%;
-}
+    /* Stretch to fill grid */
+    flex: 1;
+    /* Safety */
 
-.duration-label {
-    font-size: 0.9rem;
-    color: #666;
-    display: flex;
-    justify-content: space-between;
-}
+    .mode-selector button {
+        box-sizing: border-box;
+        /* Safari safety */
+        background: white;
+        border: 1px solid transparent;
+        /* default border */
+        padding: 10px 15px;
+        /* Revert to standard padding */
+        /* Increased bottom padding to lift Start button */
+        border-radius: 20px;
+        cursor: pointer;
+        font-family: var(--font-family);
+        font-size: 0.9rem;
+        color: var(--color-text);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        transition: all 0.2s;
+    }
 
-.slider-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
+    .mode-selector button.active {
+        font-weight: 600;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-.duration-slider {
-    width: 100%;
-    cursor: pointer;
-    height: 6px;
-    background: #eee;
-    border-radius: 5px;
-    outline: none;
-    -webkit-appearance: none;
-}
+    .start-button,
+    .stop-button {
+        margin-top: 10px;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 25px;
+        background: #2c3e50;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        /* Extra safety formatting */
+    }
 
-.duration-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: currentColor;
-    /* Uses accent-color ideally, or set via JS style */
-    cursor: pointer;
-}
+    /* Slider Styling */
+    .duration-selector-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
 
-.slider-minmax {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    color: #999;
-}
+    .duration-label {
+        font-size: 0.9rem;
+        color: #666;
+        display: flex;
+        justify-content: space-between;
+    }
 
-/* Exercise View Specifics */
-.instruction-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-}
+    .slider-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
 
-.instruction-text {
-    font-size: 1.5rem;
-    color: white;
-    font-weight: 600;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
+    .duration-slider {
+        width: 100%;
+        cursor: pointer;
+        height: 6px;
+        background: #eee;
+        border-radius: 5px;
+        outline: none;
+        -webkit-appearance: none;
+    }
 
-.seconds-text {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 400;
-}
+    .duration-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: currentColor;
+        /* Uses accent-color ideally, or set via JS style */
+        cursor: pointer;
+    }
 
-.footer-controls {
-    display: flex;
-    flex-direction: column;
-    /* Stack vertically as requested */
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-}
+    .slider-minmax {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: #999;
+    }
 
-.toggle-seconds {
-    background: transparent;
-    border: none;
-    /* Cleaner look */
-    /* border: 1px solid #ddd; */
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    color: #999;
-    /* Subtle */
-    transition: all 0.2s;
-    text-decoration: underline;
-    /* Make it look like a quiet link/toggle */
-}
+    /* Exercise View Specifics */
+    .instruction-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
 
-.toggle-seconds:hover {
-    color: #666;
-    background: transparent;
-}
+    .instruction-text {
+        font-size: 1.5rem;
+        color: white;
+        font-weight: 600;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
 
-.header h2 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: var(--color-text);
-    font-weight: 500;
-}
+    .seconds-text {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 400;
+    }
+
+    .footer-controls {
+        display: flex;
+        flex-direction: column;
+        /* Stack vertically as requested */
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .toggle-seconds {
+        background: transparent;
+        border: none;
+        /* Cleaner look */
+        /* border: 1px solid #ddd; */
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        color: #999;
+        /* Subtle */
+        transition: all 0.2s;
+        text-decoration: underline;
+        /* Make it look like a quiet link/toggle */
+    }
+
+    .toggle-seconds:hover {
+        color: #666;
+        background: transparent;
+    }
+
+    .header h2 {
+        margin: 0;
+        font-size: 1.4rem;
+        color: var(--color-text);
+        font-weight: 500;
+    }
