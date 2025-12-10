@@ -1,5 +1,5 @@
 import React from 'react';
-import { MODES, DURATIONS } from '../constants';
+import { MODES } from '../constants';
 
 function SelectionView({ currentModeId, setMode, duration, setDuration, onStart }) {
     const currentMode = MODES[currentModeId];
