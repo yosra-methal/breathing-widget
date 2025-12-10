@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { MODES } from './constants'
 import SelectionView from './components/SelectionView'
 import ExerciseView from './components/ExerciseView'
-import './App.css' // We might need a specific CSS file for App layout
+import './App_Final.css' // We might need a specific CSS file for App layout
 
 function App() {
     const [currentModeId, setCurrentModeId] = useState('grounding');
