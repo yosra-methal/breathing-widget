@@ -172,6 +172,8 @@
 }
 
 .mode-selector button {
+    box-sizing: border-box;
+    /* Safari safety */
     background: white;
     border: 1px solid transparent;
     /* default border */
