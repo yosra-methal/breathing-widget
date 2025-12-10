@@ -172,7 +172,8 @@
     box-sizing: border-box;
     /* Critical Safari Fix */
     background: white;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
+    /* Match active state width */
     padding: 10px 15px;
     border-radius: 20px;
     cursor: pointer;
